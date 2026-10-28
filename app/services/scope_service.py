@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Gestion du scope autorisé — le « kill switch » recommandé :
 
 Une cible ne peut être scannée que si elle est déclarée dans le scope de

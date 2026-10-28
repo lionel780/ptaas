@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Rapports de pentest prêts pour l'audit : sévérité, exploitabilité,
 remédiation priorisée, mapping NIS2 / ISO 27001 / DORA.
 LLM optionnel (OPENAI_*) ; sinon rapport structuré automatique.

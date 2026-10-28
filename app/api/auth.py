@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 

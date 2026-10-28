@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Moteur de scan : checks HTTP/TLS intégrés + outils externes
 (nmap, sqlmap, nikto, zap-baseline) quand installés.
 Ne tourne que sur des cibles vérifiées par scope_service.

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 from fastapi import FastAPI
 
 from app.api import auth, targets, scans, billing

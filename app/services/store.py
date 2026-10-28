@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Stockage JSON simple (users, orgs, targets, scans, credits)."""
 import json
 import os

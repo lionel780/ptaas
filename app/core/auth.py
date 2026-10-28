@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Auth JWT + rôles (admin/analyst/viewer)."""
 from datetime import datetime, timedelta, timezone
 from typing import Optional

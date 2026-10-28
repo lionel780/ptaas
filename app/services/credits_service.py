@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 """Modèle par crédits : plans (startup/pme/enterprise) + consommation par scan.
 
 1 crédit = 1 scan rapide ; scan profond = 3 crédits ; exploitation active = 5.

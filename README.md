@@ -52,3 +52,8 @@ Code sous [MIT](LICENSE) ; conditions d'usage et disclaimer dans
 ## Outils externes (deep/exploit)
 
 Détectés automatiquement : `nmap`, `nikto`, `sqlmap`, `zap-baseline`.
+
+---
+
+Copyright (c) 2026 lionel780. Code sous licence MIT — voir LICENSE.
+Conditions d'usage éthique : voir ETHICS.md.
