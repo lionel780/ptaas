@@ -36,6 +36,11 @@ uvicorn app.main:app --port 8090
 Coûts : scan rapide = 1 crédit, profond = 3, exploitation (sqlmap) = 5.
 `POST /api/billing/recharge` (admin) pour recharger.
 
+## Licence et cadre légal
+
+Code sous [MIT](LICENSE) ; conditions d'usage et disclaimer dans
+[ETHICS.md](ETHICS.md) — lecture obligatoire avant tout scan.
+
 ## Garde-fou juridique
 
 - **Aucun scan sur une cible non vérifiée** (`assert_scannable`) — le kill
