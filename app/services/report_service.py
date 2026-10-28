@@ -94,6 +94,37 @@ def build_report(scan: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def audience_view(report: Dict[str, Any], audience: str) -> Dict[str, Any]:
+    """Rapport modulaire par audience : developer / ciso / auditor."""
+    if audience == "developer":
+        return {
+            "target": report.get("target"),
+            "findings": report.get("findings_table", report.get("findings")),
+            "remediation_plan": report.get("remediation_plan"),
+        }
+    if audience == "ciso":
+        return {
+            "target": report.get("target"),
+            "risk_level": report.get("risk_level"),
+            "counts": report.get("counts"),
+            "executive_summary": report.get("executive_summary"),
+            "remediation_plan": report.get("remediation_plan"),
+        }
+    if audience == "auditor":
+        findings = report.get("findings_table", report.get("findings", []))
+        return {
+            "target": report.get("target"),
+            "risk_level": report.get("risk_level"),
+            "compliance_note": report.get("compliance_note"),
+            "compliance_matrix": [
+                {k: f.get(k) for k in ("type", "severite", "nis2", "iso27001", "dora")}
+                if "severite" in f else f
+                for f in findings
+            ],
+        }
+    return report
+
+
 async def llm_report(scan: Dict[str, Any]) -> Dict[str, Any]:
     """Version LLM si OPENAI_API_KEY est configurée, sinon rapport auto."""
     if not settings.openai_api_key:

@@ -11,6 +11,9 @@ router = APIRouter(prefix="/api/targets", tags=["scope"])
 class TargetIn(BaseModel):
     target: str
     authorization_ref: str = ""
+    asset_type: str = "web"       # web|api|mobile|desktop|network|cloud|llm
+    mode: str = "black_box"       # black_box|grey_box|white_box
+    interval_hours: int = 0       # >0 = validation continue (scan planifié)
 
 
 @router.get("")
@@ -21,7 +24,8 @@ def list_targets(user=Depends(current_user)):
 @router.post("")
 def declare(body: TargetIn, user=Depends(require_role("admin", "analyst"))):
     t = scope_service.declare_target(user["org_id"], body.target,
-                                     body.authorization_ref)
+                                     body.authorization_ref, body.asset_type,
+                                     body.mode, body.interval_hours)
     return {
         "target_id": t["id"], "domain": t["domain"],
         "verify_token": t["verify_token"],

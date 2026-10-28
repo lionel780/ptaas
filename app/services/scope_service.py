@@ -25,13 +25,22 @@ def _domain(url_or_domain: str) -> str:
     return u.split("/")[0].split(":")[0]
 
 
-def declare_target(org_id: str, target: str, authorization_ref: str = "") -> Dict[str, Any]:
+def declare_target(org_id: str, target: str, authorization_ref: str = "",
+                   asset_type: str = "web", mode: str = "black_box",
+                   interval_hours: int = 0) -> Dict[str, Any]:
     """Déclare une cible et génère son token de vérification."""
+    from app.services.capabilities import ASSET_TYPES, MODES
+    if asset_type not in ASSET_TYPES:
+        raise HTTPException(400, f"asset_type inconnu : {sorted(ASSET_TYPES)}")
+    if mode not in MODES:
+        raise HTTPException(400, f"mode inconnu : {sorted(MODES)}")
     token = "ptaas-" + secrets.token_hex(16)
     doc = store.insert("targets", {
         "org_id": org_id, "target": target, "domain": _domain(target),
         "verify_token": token, "verified": False,
         "authorization_ref": authorization_ref,  # ex: n° de contrat / mandat
+        "asset_type": asset_type, "mode": mode,
+        "interval_hours": interval_hours, "last_scan_at": None,
     })
     return doc
 

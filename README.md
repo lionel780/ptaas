@@ -15,6 +15,19 @@ uvicorn app.main:app --port 8090
 `.env` optionnel : `SECRET_KEY`, `OPENAI_API_KEY`, `OPENAI_BASE_URL`,
 `OPENAI_MODEL` (rapports IA).
 
+## Capacités
+
+`GET /api/capabilities` liste les types d'assets (web, api, mobile, desktop,
+network, cloud, llm), les méthodologies (OWASP WSTG/MASTG/API/LLM, PTES,
+NIST 800-115, MITRE ATT&CK), les modes (black/grey/white-box), les audiences
+de rapport et le périmètre d'exclusion.
+
+Chaque cible déclare `asset_type`, `mode` et `interval_hours` (>0 = scan
+planifié = **validation continue**). `POST /api/scans/{id}/retest` relance un
+test pour valider un correctif ; `GET /api/scans/{id}?audience=developer|ciso|auditor`
+donne le rapport adapté à l'audience ; `POST /api/hooks/deploy` permet à la
+CI/CD (GitHub Actions, GitLab CI) de déclencher un scan sur merge/déploiement.
+
 ## Flux
 
 1. `POST /api/auth/register` — organisation + premier utilisateur (admin)
