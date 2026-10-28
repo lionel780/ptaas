@@ -28,7 +28,8 @@ def register(body: Register):
     org = ensure_org(body.org_name, body.plan)
     user = store.insert("users", {
         "email": body.email, "password_hash": hash_password(body.password),
-        "org_id": org["id"], "role": "admin" if not store.find("users") else "analyst",
+        "org_id": org["id"],
+        "role": "admin" if not store.find("users", org_id=org["id"]) else "analyst",
     })
     return {"token": create_token(user["id"], org["id"], user["role"]),
             "org_id": org["id"], "role": user["role"], "plan": org["plan"]}
